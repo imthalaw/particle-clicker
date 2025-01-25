@@ -1,35 +1,4 @@
-function ParticleEvent(type, count, external)
-{
-    this.work = typeof external !== 'undefined' ? external : false;
-    this.type = type;
-    this.length = 0;
-    this.radius = 0;
-    this.direction = 0;
-    this.sign = (Math.random() - 0.5 >= 0) ? 1 : -1;
-    this.alpha = this.work ? 0.5 : 1;
-    this.count = count;
 
-    switch (this.type.name)
-    {
-        case 'electron':
-            this.length = detector.radius.siliconSpace * detector.ratio + Math.round((detector.radius.ecal * detector.ratio + 10 - detector.radius.siliconSpace * detector.ratio) * Math.random());
-            this.direction = Math.random() * Math.PI * 2;
-            this.radius = 20 + Math.round((100 - 20) * Math.random());
-            break;
-        case 'jet':
-            this.length = detector.radius.ecal * detector.ratio + Math.round((detector.radius.mucal * detector.ratio - detector.radius.ecal * detector.ratio) * Math.random());
-            this.direction = Math.random() * Math.PI * 2;
-            this.radius = 40 + Math.round((200 - 40) * Math.random());
-            break;
-        case 'muon':
-            this.length = detector.radius.mucal * detector.ratio + 3 * detector.radius.mucalDark * detector.ratio + Math.round((4 * detector.radius.mucalLight * detector.ratio + 2 * detector.radius.mucalDark * detector.ratio) * Math.random());
-            this.direction = Math.random() * Math.PI * 2;
-            this.radius = 200 + Math.round((600 - 200) * Math.random());
-            break;
-    }
-
-    this.draw(16, true);
-};
 
 ParticleEvent.prototype.draw = function(duration, init)
 {
